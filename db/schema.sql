@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS bonAppetit_db;
+CREATE DATABASE bonAppetit_db;
