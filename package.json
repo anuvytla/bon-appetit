@@ -19,8 +19,6 @@
   },
   "homepage": "https://github.com/anuvytla/bon-appetit#readme",
   "dependencies": {
-   
-    
     "inquirer": "^9.0.2",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3",
