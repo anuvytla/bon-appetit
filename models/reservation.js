@@ -13,15 +13,19 @@ Reservation.init (
         },
         partySize: {
             type: DataTypes.INTEGER,
+            allowNull: false,
         },
         reservationDate: {
             type: DataTypes.DATE,
+            allowNull: false,
         },
         reservationTime: {
             type: DataTypes.TIME,
+            allowNull: false,
         },
         customerID: {
             type: DataTypes.UUID,
+            allowNull: false,
             foreignKey: true,
         },
     },
