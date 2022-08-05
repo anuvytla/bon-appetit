@@ -1,7 +1,9 @@
 var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
+var crypto = require('crypto');
 var router = express.Router();
+const Customer = require('../models/customer');
 
 // passport-local tutorial: https://www.passportjs.org/tutorials/password/signup/
 
@@ -46,5 +48,26 @@ router.post('/logout', function(req, res, next) {
       res.redirect('/');
     });
 });
+
+router.get('/signup', function(req, res, next) {
+    res.json('sign up!!!');
+});
+
+router.post('/signup', async function(req, res, next) {
+    const newCustomer = await Customer.create({
+        'name': req.body.name,
+        'email': req.body.email,
+        'phone': req.body.phone,
+        'password': req.body.password
+      });
+      var user = {
+        id: newCustomer.customerId,
+        username: newCustomer.email
+      };
+      req.login(user, function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+      });
+  });
 
 module.exports = router;
