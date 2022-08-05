@@ -6,6 +6,7 @@ class Customer extends Model {}
 
 Customer.init (
     {
+        // foreign key in reservation table
         customerId: {
             type: DataTypes.UUID,
             primaryKey: true,
