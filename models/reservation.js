@@ -23,6 +23,7 @@ Reservation.init (
             type: DataTypes.TIME,
             allowNull: false,
         },
+        // primary key for customer table
         customerID: {
             type: DataTypes.UUID,
             allowNull: false,
