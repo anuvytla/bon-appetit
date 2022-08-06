@@ -35,6 +35,7 @@ passport.deserializeUser(function(user, cb) {
 
 router.get('/login', function(req, res, next) {
   res.json('login!!!');
+ 
 });
 
 router.post('/login/password', passport.authenticate('local', {

@@ -1,14 +1,23 @@
 const express = require('express');
-var authRouter = require('./routes/auth');
 require('dotenv').config();
 var passport = require('passport');
 var session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 var cookieParser = require('cookie-parser');
 const sequelize = require('./config/connection');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers/homepageController');
 
 const app = express();
 const PORT = process.env.PORT;
+
+const hbs = exphbs.create({});
+
+// handlebars template engine
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.static('public'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,8 +32,8 @@ app.use(session({
   }));
 app.use(passport.authenticate('session'));
 
-app.get('/', (req, res) => { res.json('Hello!!!') });
-app.use('/', authRouter);
+// app.get('/', (req, res) => { res.json('Hello!!!') });
+app.use(routes);
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
