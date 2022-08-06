@@ -5,31 +5,31 @@ var authRouter = require('../routes/auth');
 
 // renders signup/landing page
 router.get('/', (req,res) => {
-    res.render('partials/login', {
+    res.render('login', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
 router.get('/login', (req,res) => {
-    res.render('partials/login', {
+    res.render('login', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
 router.get('/signup', (req,res) => {
-    res.render('partials/signup', {
+    res.render('signup', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
 router.get('/reservation', (req,res) => {
-    res.render('partials/reservation', {
+    res.render('reservation', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
 router.get('/menu', (req,res) => {
-    res.render('partials/menu', {
+    res.render('menu', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
