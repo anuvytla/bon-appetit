@@ -14,6 +14,16 @@ router.get('/', async (req, res) => {
 });
 
 
+router.post('/', async (req, res) => {
+    try{
+        const newCustomer = await Customer.create(req.body);
+        res.json(newCustomer);
+    } catch (error) {
+        res.status(500).json({ error });
+    }  
+});
+
+
 router.get('/:customerId', async (req, res) => {
     try{
         const customer = await Customer.findByPk(req.params.customerId);

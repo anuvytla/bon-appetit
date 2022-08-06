@@ -14,6 +14,16 @@ router.get('/', async (req, res) => {
 });
 
 
+router.post('/', async (req, res) => {
+    try{
+        const newReservation = await Reservation.create(req.body);
+        res.json(newReservation);
+    } catch (error) {
+        res.status(500).json({ error });
+    }  
+});
+
+
 router.get('/:reservationId', async (req, res) => {
     try{
         const reservation = await Reservation.findByPk(req.params.reservationId);
