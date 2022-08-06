@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
+
+.navbar-brand {
+  font-family: "Homemade Apple", sans-serif, cursive;
+  text-align: center;
+  margin: auto;
+  color: #ff7f00;
+  font-weight: bolder;
+  font-size: 3rem;
+}
+
+footer {
+  color: white;
+}
+
+.main-bg {
+  background-color: #004b49;
+  color: #ff7f00;
+}
+
+.btn {
+  background-color: #ff7f00;
+  border: 1px solid #ff7f00;
+}
+
+i {
+  color: #ff7f00;
+}
+
+.orange-border {
+  border: 5px solid #ff7f00;
+}
+
+.main-container {
+  background: #333 url('./public/assets/images/homepage.jpg') no-repeat center center/cover;
+  height: 100vh;
+  
+}
