@@ -1,5 +1,6 @@
 const express = require('express');
 var authRouter = require('./routes/auth');
+var routes = require('./routes');
 require('dotenv').config();
 var passport = require('passport');
 var session = require('express-session');
@@ -24,7 +25,8 @@ app.use(session({
 app.use(passport.authenticate('session'));
 
 app.get('/', (req, res) => { res.json('Hello!!!') });
-app.use('/', authRouter);
+app.use('/auth', authRouter);
+app.use('/', routes);
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
