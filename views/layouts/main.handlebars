@@ -30,9 +30,13 @@
         <a class="navbar-brand text-center" href="/login">
           <i class="fa-solid fa-champagne-glasses"></i> Bon Appetit
         </a>
-        <button id="mainSignUpBtn" class="btn mx-2">Sign Up</button>
+        {{#if isLoggedIn}}        
         <button id="viewMenuBtn" class="btn mx-2">View Menu</button>
         <button id="reserveTableBtn" class="btn mx-2">Reserve a Table</button>
+        <button id="signoutBtn" class="btn mx-2">Sign Out</button>
+        {{else}}
+        <button id="mainSignUpBtn" class="btn mx-2">Sign Up</button>
+        {{/if}}
       </div>
     </nav>
 

@@ -1,5 +1,7 @@
 const router = require('express').Router();
 var authRouter = require('../routes/auth');
+var apiController = require('./apiController');
+const menuItems = require('../utils/items')
 // const {User} = require('../models');
 // const {Todo} = require('../models');
 
@@ -29,12 +31,16 @@ router.get('/reservation', (req,res) => {
 });
 
 router.get('/menu', (req,res) => {
+    // [TODO] href => 2 places (main.js called from user, menu.js called from place_order)
+    req.session.orderPlaced = true;
     res.render('menu', {
+        appetizerItems: JSON.parse(menuItems).appetizerItems,
         isLoggedIn: req.session.isLoggedIn,
+        orderPlaced: req.session.orderPlaced,
     });
 });
 
 router.use('/api', authRouter);
-
+router.use('/api', apiController);
 
 module.exports = router;

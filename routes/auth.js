@@ -34,18 +34,24 @@ passport.deserializeUser(function(user, cb) {
 });
 
 router.get('/login', function(req, res, next) {
+    // [TODO] remove isLoggedIn after fixes in authentication
+  req.session.isLoggedIn = true;
   res.json('login!!!');
  
 });
 
+// [TODO] username password check is missing, res object not given
+// [TODO] Save session details and set isLoggedIn to true/false
 router.post('/login/password', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
+    
 }));
 
 router.post('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
+      req.session.isLoggedIn = false;
       res.redirect('/');
     });
 });
@@ -65,6 +71,7 @@ router.post('/signup', async function(req, res, next) {
         id: newCustomer.customerId,
         username: newCustomer.email
       };
+    // [TODO] Signup should fail if email already exists in db 
       req.login(user, function(err) {
         if (err) { return next(err); }
         res.redirect('/');

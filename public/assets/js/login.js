@@ -17,10 +17,12 @@ loginBtn.addEventListener('click', async (event) => {
         alert('Please enter a valid password. Password must be 6 characters long.');
         return;
     }
-    console.log("HIIII");
+    // console.log("HIIII");
     // posts the user input to the /api/logup endpoint
     try {
-        // const response = await fetch('/api/login', {
+        // [TODO] remove after fixes in auth.js
+        const response = await fetch('/api/login')
+        // const response = await fetch('/api/login/password', {
         //     method: 'POST',
         //     headers: {
         //         'Content-Type': 'application/json',
@@ -30,8 +32,12 @@ loginBtn.addEventListener('click', async (event) => {
         //         password,
         //     })
         // });
-
-        // await response.json();
+        // console.log(JSON.stringify({
+        //     username,
+        //     password,
+        // }))
+        // console.log(username,password);
+         await response.json();
         // change user window to the /users endpoint
         console.log("going to reservations");
         window.location.href = '/reservation';
