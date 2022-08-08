@@ -11,7 +11,7 @@ Order.init(
             defaultValue: DataTypes.UUIDV4,
         },
         order: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT('long'),
             allowNull: false,
             validate: {
                 notNull: true,

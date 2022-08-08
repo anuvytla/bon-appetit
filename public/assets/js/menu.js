@@ -13,7 +13,7 @@ placeOrderBtn.addEventListener("click", async () => {
 
     if (quantity) {
       totalPrice += quantity * element.price;
-      orderArray.push({ quantity: quantity, item: element });
+      orderArray.push({ quantity: quantity, item: element.id });
     }
   });
 
