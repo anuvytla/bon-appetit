@@ -32,7 +32,7 @@ placeOrderBtn.addEventListener("click", async () => {
     });
 
     await response.json();
-    
+    window.location.href = "/menu";
     // orderPaced => POST /menu body
     // orderPlaced = response.orderPlaced
     // orderPlaced = true;
