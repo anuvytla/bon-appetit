@@ -117,15 +117,15 @@ Beyond this project's MVP, if we had additional time, we would upscale this appl
 
 ## Authors
 
-- Website - [Anusha Vytla](https://www.your-site.com)
+-Professional Portfolio - [Anusha Vytla](https://www.your-site.com)
 - Github - [anuvytla](https://github.com/anuvytla)
 -------------------------------------------------------------
 
-- Website - [Devi Nallammai](https://www.your-site.com)
+- Professional Portfolio - [Devi Nallammai](https://www.your-site.com)
 - Github - [rmdn321](https://github.com/rmdn321/)
 --------------------------------------------------------------
 
-- Website - [Robert M Greene](https://monkonjay.github.io/Portfolio/)
+- Professional Portfolio - [Robert M Greene](https://monkonjay.github.io/Portfolio/)
 - Github - [Monkonjay](https://github.com/Monkonjay)
 --------------------------------------------------------------
 
