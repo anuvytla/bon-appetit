@@ -117,7 +117,7 @@ Beyond this project's MVP, if we had additional time, we would upscale this appl
 
 ## Authors
 
--Professional Portfolio - [Anusha Vytla](https://www.your-site.com)
+- Professional Portfolio - [Anusha Vytla](https://www.your-site.com)
 - Github - [anuvytla](https://github.com/anuvytla)
 -------------------------------------------------------------
 
