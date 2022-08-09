@@ -1,6 +1,7 @@
 const router = require("express").Router();
 var authRouter = require("../routes/auth");
 const apiRoutes = require("../routes");
+const apiController = require("./apiController");
 const menuItems = require("../utils/items");
 const { Customer, Reservation } = require("../models");
 
@@ -64,5 +65,6 @@ router.get('/home', function(req, res, next) {
 
 router.use("/auth", authRouter);
 router.use("/", apiRoutes);
+router.use("/api", apiController);
 
 module.exports = router;
