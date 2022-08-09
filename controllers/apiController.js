@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Customer, Order} = require('../models');
-const menuItems = require('../utils/items')
+const menuItems = require('../utils/items');
+const apiRoutes = require("../routes");
 
 router.get('/items', async (req, res) => {
   if(!req.session.isLoggedIn){
@@ -31,5 +32,6 @@ router.post('/orders', async (req, res) => {
   }
 });
 
+router.use("/", apiRoutes);
 
 module.exports = router;

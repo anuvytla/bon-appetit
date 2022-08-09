@@ -11,6 +11,15 @@ Customer.hasMany(Order, {
     onDelete: 'CASCADE',
 });
 
+Reservation.belongsTo(Customer, {
+    foreignKey: 'customerID',
+});
+
+Customer.hasMany(Reservation, {
+    foreignKey: 'customerID',
+    onDelete: 'CASCADE',
+});
+
 module.exports = {
     Customer,
     Reservation,

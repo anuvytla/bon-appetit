@@ -2,14 +2,25 @@ const router = require("express").Router();
 var authRouter = require("../routes/auth");
 var apiController = require("./apiController");
 const menuItems = require("../utils/items");
+const { Customer, Reservation } = require("../models");
 // const {User} = require('../models');
 // const {Todo} = require('../models');
 
 // renders signup/landing page
-router.get("/", (req, res) => {
-  res.render("login", {
-    isLoggedIn: req.session.isLoggedIn,
-  });
+router.get("/", async (req, res) => {
+  if (req.session.isLoggedIn) {
+    let userID = '1066b85c-d35b-45f4-8731-759ec69e4130';
+    let user = await Customer.findByPk(userID, {
+      // include its associated Products.
+      include: [{ model: Reservation }],
+    });
+    res.render("dashboard", {
+      isLoggedIn: req.session.isLoggedIn,
+      user: user.get({plain: true})
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 router.get("/login", (req, res) => {
@@ -30,9 +41,7 @@ router.get("/reservation", (req, res) => {
       isLoggedIn: req.session.isLoggedIn,
     });
   } else {
-    res.render("login", {
-      isLoggedIn: req.session.isLoggedIn,
-    });
+    res.redirect("/login");
   }
 });
 
@@ -46,13 +55,11 @@ router.get("/menu", (req, res) => {
     });
     req.session.orderPlaced = false;
   } else {
-    res.render("login", {
-      isLoggedIn: req.session.isLoggedIn,
-    });
+    res.redirect("/login");
   }
 });
 
-router.use("/api", authRouter);
-router.use("/api", apiController);
+router.use("/auth", authRouter);
+router.use("/", apiController);
 
 module.exports = router;

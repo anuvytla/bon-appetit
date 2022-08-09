@@ -22,7 +22,6 @@ router.post('/', async (req, res) => {
     }  
 });
 
-
 router.get('/:reservationId', async (req, res) => {
     try{
         const reservation = await Reservation.findByPk(req.params.reservationId);

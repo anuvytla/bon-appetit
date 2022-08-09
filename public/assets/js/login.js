@@ -22,7 +22,7 @@ loginBtn?.addEventListener('click', async (event) => {
     try {
         // [TODO] remove after fixes in auth.js
         // const response = await fetch('/api/login')
-        const response = await fetch('/api/login/password', {
+        const response = await fetch('/auth/login/password', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,18 +32,16 @@ loginBtn?.addEventListener('click', async (event) => {
                 password,
             })
         });
-        console.log(JSON.stringify({
-            username,
-            password,
-        }))
+        
         console.log(username,password);
+        console.log(response.body);
         loginStatus = await response.json();
         if (loginStatus) {
             console.log("login status success");
-            window.location.href = '/reservation';
+            // window.location.href = '/reservation';
         } else {
             console.log("login status fail");
-            window.location.href = '/login';
+            // window.location.href = '/login';
         }
         // change user window to the /users endpoint
         // console.log("going to reservations");
