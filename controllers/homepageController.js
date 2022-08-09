@@ -52,11 +52,13 @@ router.get("/menu", (req, res) => {
       dessertItems: JSON.parse(menuItems).dessertItems,
       isLoggedIn: req.session.isLoggedIn,
       orderPlaced: req.session.orderPlaced,
+      totalPrice: req.session.totalPrice,
     });
-    req.session.orderPlaced = false;
+    
+    req.session.orderPlaced = false;    
   } else {
     res.render("login", {
-      isLoggedIn: req.session.isLoggedIn,
+      isLoggedIn: req.session.isLoggedIn,      
     });
   }
 });

@@ -16,7 +16,8 @@ router.post('/orders', async (req, res) => {
   console.log(req.body.order,)
   console.log(req.body.totalPrice,)
   // TODO: need session user id from auth
-  // console.log(req.session.user.id,)
+  // console.log(req.session.user.id,) 
+
   try {
       const newOrder = await Order.create({
           order: req.body.order,
@@ -24,12 +25,13 @@ router.post('/orders', async (req, res) => {
         //   customerId: req.session.user.id,
       });
       req.session.orderPlaced = true;
-      
+      req.session.totalPrice = req.body.totalPrice;
       res.json(newOrder);
   } catch (error) {
       console.error(error);
       res.status(500).json({error});
   }
+
 });
 
 
