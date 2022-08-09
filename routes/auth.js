@@ -7,51 +7,49 @@ const Customer = require('../models/customer');
 
 // passport-local tutorial: https://www.passportjs.org/tutorials/password/signup/
 
-const dummy_user = {
-    id: 1,
-    username: "restaurant",
-    password: "password"
-}
+passport.use(new LocalStrategy(async function verify(username, password, callback) {
+  const customer = await Customer.findOne({ where: { email: username } });
+  console.log(customer);
+  if(customer === null) {
+    callback(null, false, { message: 'Incorrect username.' });
+  }
 
-passport.use(new LocalStrategy(function verify(username, password, callback) {
-    if(username === dummy_user.username && password === dummy_user.password) {
-        callback(null, dummy_user);
-    } else {
-        callback(null, false, { message: 'Incorrect username or password.' });
-    }
+  if(password === customer.password) {
+    callback(null, customer);
+  } else {
+    callback(null, false, { message: 'Incorrect password.' });
+  }
 }));
 
-passport.serializeUser(function(user, cb) {
-    process.nextTick(function() {
-        cb(null, { id: user.id, username: user.username });
-    });
+passport.serializeUser(function(customer, cb) {
+  process.nextTick(function() {
+      cb(null, { customerId: customer.customerId, email: customer.email });
+  });
 });
-  
+
 passport.deserializeUser(function(user, cb) {
-    process.nextTick(function() {
-        return cb(null, user);
-    });
+  process.nextTick(function() {
+      return cb(null, user);
+  });
 });
 
-router.get('/login', function(req, res, next) {
-  res.json('login!!!');
- 
+// [TODO] username password check is missing, res object not given
+// [TODO] Save session details and set isLoggedIn to true/false
+router.post("/login/password", passport.authenticate('local', { failureMessage: true }), function (req, res) {
+  if (!req.user) {
+    console.log("Invalid credentials!");
+    req.session.isLoggedIn = false;
+  } else {
+    req.session.isLoggedIn = true;
+  }
+  res.json(req.session.isLoggedIn);
 });
-
-router.post('/login/password', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
 
 router.post('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
       res.redirect('/');
     });
-});
-
-router.get('/signup', function(req, res, next) {
-    res.json('sign up!!!');
 });
 
 router.post('/signup', async function(req, res, next) {
@@ -62,12 +60,13 @@ router.post('/signup', async function(req, res, next) {
         'password': req.body.password
       });
       var user = {
-        id: newCustomer.customerId,
-        username: newCustomer.email
+        customerId: newCustomer.customerId,
+        email: newCustomer.email
       };
       req.login(user, function(err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        req.session.isLoggedIn = true;
+        res.json(true);
       });
   });
 

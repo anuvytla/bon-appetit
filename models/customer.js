@@ -30,11 +30,11 @@ Customer.init (
         },
         phone: {
             type: DataTypes.STRING,
-            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+            len: [8],
         }
     },
     {

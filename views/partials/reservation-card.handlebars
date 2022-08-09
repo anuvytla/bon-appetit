@@ -1,0 +1,20 @@
+<section reservation-id="{{reservationId}}">
+    <div class="reservation-info">
+        <p> Date: {{reservationDate}}</p>
+        <p> Time: {{reservationTime}}</p>
+        <p> Party size: {{partySize}}</p>
+        <div>
+            <button id="edit-reservation">Edit</button>
+            <button id="cancel-reservation">Cancel</button>
+        </div>
+    </div>
+    <form class="edit-reservation">
+        <label for="date-input">Date</label>
+        <input type="text" name="reservationDate" id="reservationDate" value="{{reservationDate}}" />
+        <label for="time-input">Time</label>
+        <input type="text" name="reservationTime" id="reservationTime"  value="{{reservationTime}}"/>
+        <label for="size-input">How Many</label>
+        <input type="text" name="partySize" id="partySize"  value="{{partySize}}"/>
+        <button type="submit">Update</button>
+    </form>
+</section>

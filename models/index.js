@@ -1,13 +1,27 @@
 const Customer = require('./customer');
 const Reservation = require('./reservation');
+const Order = require('./order');
 
-Customer.hasMany(Reservation, {
-    foreignKey: 'CustomerId',
+Order.belongsTo(Customer, {
+    foreignKey: 'customerId',
+});
+
+Customer.hasMany(Order, {
+    foreignKey: 'customerId',
     onDelete: 'CASCADE',
 });
-// Reservation.belongsTo(Customer);
+
+Reservation.belongsTo(Customer, {
+    foreignKey: 'customerID',
+});
+
+Customer.hasMany(Reservation, {
+    foreignKey: 'customerID',
+    onDelete: 'CASCADE',
+});
 
 module.exports = {
     Customer,
     Reservation,
+    Order,
 }
