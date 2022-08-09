@@ -73,7 +73,7 @@ i {
 }
 
 .card {
-  width: 18rem;
+  width: 20rem;
 }
 
 .home-card {
@@ -86,3 +86,16 @@ i {
   background-color: #004b49;
   border: 5px solid #004b49;
 }
+
+.menu-heading{
+  color: #ff7f00;
+  background-color: white;
+  border: 3px solid #ff7f00;
+  width: max-content;
+  border-radius: 10px;
+}
+
+#placeOrderBtn {
+  font-size: 2rem;
+}
+
