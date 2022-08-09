@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const customerRoutes = require('./customerRoutes');
 const reservationRoutes = require('./reservationRoutes');
+const {Customer, Order} = require('../models');
+const menuItems = require('../utils/items');
 
 router.get('/items', async (req, res) => {
     if(!req.session.isLoggedIn){
