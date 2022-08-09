@@ -1,1 +1,33 @@
-<h1>Menu Page</h1>
+
+<h1>Check out our Menu</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {{#each appetizerItems as |appetizerItem|}}
+  <div class="col">
+    
+    <div class="card h-100">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{appetizerItem.name}}</h5>
+        <p class="card-text">{{appetizerItem.description}}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <span>${{appetizerItem.price}}</span>
+        <input id="{{appetizerItem.id}}Quantity" type="number" aria-label="quantity" placeholder="Enter quantity(1-5)">
+        
+      </div>
+    </div>
+    
+  </div>
+  {{/each}}
+</div>
+
+<button id="placeOrderBtn">Place Order</button>
+
+{{#if orderPlaced}} 
+<div class="alert alert-success" role="alert">
+  Order placed!
+</div> 
+{{/if}}
+
+<script src="/assets/js/menu.js"></script>
