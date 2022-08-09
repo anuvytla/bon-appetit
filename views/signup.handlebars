@@ -1,21 +1,32 @@
-<div class="container main-container d-flex">
+<div class="container d-flex justify-content-center my-5">
   <div class="row justify-content-center">
     <div class="col-sm-12">
       <div class="card orange-border">
         <div class="card-body">
           <h5 class="card-title">Sign Up</h5>
           <form>
+            
+            <div class="mb-3">
+              <label for="exampleInputname1" class="form-label">Name</label>
+              <input type="text" class="form-control" id="signupUsernameInput" aria-describedby="nameHelp" placeholder="Name">
+              
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputphone1" class="form-label">Phone Number</label>
+              <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="signupUserphoneInput" aria-describedby="phoneHelp" placeholder="123-456-7890">
+              
+            </div>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="signupUsernameInput" aria-describedby="emailHelp">
+              <input type="email" class="form-control" id="signupUseremailInput" aria-describedby="emailHelp" placeholder="test@example.com">
               
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="signupPasswordInput">
+              <input type="password" class="form-control" id="signupPasswordInput" placeholder="Password must be atleast 6 characters long.">
             </div>
             
-            <button id="signupBtn" type="submit" class="btn btn-primary">Sign Up</button>
+            <button id="signupBtn" type="submit" class="btn">Sign Up</button>
           </form>
         </div>
       </div>

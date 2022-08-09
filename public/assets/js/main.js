@@ -1,19 +1,24 @@
 const signUpBtn = document.getElementById("mainSignUpBtn");
-const viewMenuBtn = document.getElementById("viewMenuBtn");
+const orderOnlineBtn = document.getElementById("orderOnlineBtn");
 const reserveTableBtn = document.getElementById("reserveTableBtn");
 const logoutBtn = document.getElementById('signoutBtn');
+const mainLoginBtn = document.getElementById('mainLoginBtn');
 
 signUpBtn?.addEventListener("click", async () => {
   console.log("Signup");
   window.location.href = "/signup";
 });
 
-viewMenuBtn?.addEventListener("click", async () => {
+orderOnlineBtn?.addEventListener("click", async () => {
   window.location.href = "/menu";
 });
 
 reserveTableBtn?.addEventListener("click", async () => {
   window.location.href = "/reservation";
+});
+
+mainLoginBtn?.addEventListener("click", async () => {
+  window.location.href = "/login";
 });
 
 logoutBtn?.addEventListener("click", async () => { 

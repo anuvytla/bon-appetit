@@ -1,33 +1,86 @@
+{{#if orderPlaced}}
+  <div class="alert alert-success h4" role="alert">
+    Order placed successfully!
+  </div>
+{{/if}}
 
-<h1>Check out our Menu</h1>
+<h1 class="menu-heading m-auto mt-4 p-2">Check out our Menu !!</h1>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<h3 class="menu-heading m-auto mt-5 p-2">Appetizers</h3>
+<div class="row row-cols-1 row-cols-md-3 ">
   {{#each appetizerItems as |appetizerItem|}}
-  <div class="col">
-    
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{appetizerItem.name}}</h5>
-        <p class="card-text">{{appetizerItem.description}}</p>
-      </div>
-      <div class="card-footer d-flex justify-content-between">
-        <span>${{appetizerItem.price}}</span>
-        <input id="{{appetizerItem.id}}Quantity" type="number" aria-label="quantity" placeholder="Enter quantity(1-5)">
-        
+    <div class="col d-flex justify-content-evenly my-5">
+      <div class="card h-100 orange-border m-3">
+        <img src={{appetizerItem.img}} class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{appetizerItem.name}}</h5>
+          <p class="card-text">{{appetizerItem.description}}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <span>${{appetizerItem.price}}</span>
+          <input
+            id="{{appetizerItem.id}}Quantity"
+            type="number"
+            aria-label="quantity"
+            placeholder="Enter quantity(1-5)"
+          />
+        </div>
       </div>
     </div>
-    
-  </div>
   {{/each}}
 </div>
 
-<button id="placeOrderBtn">Place Order</button>
+<h3 class="menu-heading m-auto mt-4 p-2">Main Course</h3>
+<div class="row row-cols-1 row-cols-md-3">
+  {{#each mainItems as |mainItem|}}
+    <div class="col d-flex justify-content-evenly my-5">
+      <div class="card h-100 orange-border m-5">
+        <img src={{mainItem.img}} class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{mainItem.name}}</h5>
+          <p class="card-text">{{mainItem.description}}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <span>${{mainItem.price}}</span>
+          <input
+            id="{{mainItem.id}}Quantity"
+            type="number"
+            aria-label="quantity"
+            placeholder="Enter quantity(1-5)"
+          />
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
 
-{{#if orderPlaced}} 
-<div class="alert alert-success" role="alert">
-  Order placed!
-</div> 
-{{/if}}
+<h3 class="menu-heading m-auto mt-5 p-2">Desserts</h3>
+<div class="row row-cols-1 row-cols-md-3">
+  {{#each dessertItems as |dessertItem|}}
+    <div class="col d-flex justify-content-evenly my-5">
+      <div class="card h-100 orange-border m-3">
+        <img src={{dessertItem.img}} class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{dessertItem.name}}</h5>
+          <p class="card-text">{{dessertItem.description}}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <span>${{dessertItem.price}}</span>
+          <input
+            id="{{dessertItem.id}}Quantity"
+            type="number"
+            aria-label="quantity"
+            placeholder="Enter quantity(1-5)"
+          />
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<button
+  id="placeOrderBtn"
+  class="btn m-5 mx-auto d-flex justify-content-center"
+>Place Order</button>
 
 <script src="/assets/js/menu.js"></script>

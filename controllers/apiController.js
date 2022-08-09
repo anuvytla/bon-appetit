@@ -16,7 +16,8 @@ router.post('/orders', async (req, res) => {
   }
   console.log(req.body.order,)
   console.log(req.body.totalPrice,)
-//   console.log(req.session.user.id,)
+  // TODO: need session user id from auth
+  // console.log(req.session.user.id,)
   try {
       const newOrder = await Order.create({
           order: req.body.order,

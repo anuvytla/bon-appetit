@@ -8,10 +8,19 @@ const Customer = require('../models/customer');
 // passport-local tutorial: https://www.passportjs.org/tutorials/password/signup/
 
 const dummy_user = {
-    id: 1,
-    username: "restaurant",
+  id: 1,
+  username: "restaurant@test.com",
     password: "password"
 }
+
+passport.use(new LocalStrategy(function verify(username, password, callback) {
+  console.log("local",username,password);
+    if(username === dummy_user.username && password === dummy_user.password) {
+      callback(null, dummy_user);
+    } else {
+        callback(null, false, { message: 'Incorrect username or password.' });
+    }
+}));
 
 passport.serializeUser(function(user, cb) {
   process.nextTick(function() {
@@ -24,14 +33,6 @@ passport.deserializeUser(function(user, cb) {
       return cb(null, user);
   });
 });
-
-passport.use(new LocalStrategy(function verify(username, password, callback) {
-    if(username === dummy_user.username && password === dummy_user.password) {
-        callback(null, dummy_user);
-    } else {
-        callback(null, false, { message: 'Incorrect username or password.' });
-    }
-}));
 
 // [TODO] username password check is missing, res object not given
 // [TODO] Save session details and set isLoggedIn to true/false
@@ -72,5 +73,10 @@ router.post('/signup', async function(req, res, next) {
         res.redirect('/');
       });
   });
+
+router.get('/home', function(req, res, next) { 
+  req.session.isLoggedIn = true;
+  res.json('home!!!'); 
+});
 
 module.exports = router;
