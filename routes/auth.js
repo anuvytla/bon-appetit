@@ -53,10 +53,6 @@ router.post('/logout', function(req, res, next) {
     });
 });
 
-router.get('/signup', function(req, res, next) {
-    res.json('sign up!!!');
-});
-
 router.post('/signup', async function(req, res, next) {
     const newCustomer = await Customer.create({
         'name': req.body.name,
@@ -73,10 +69,5 @@ router.post('/signup', async function(req, res, next) {
         res.redirect('/');
       });
   });
-
-router.get('/home', function(req, res, next) { 
-  req.session.isLoggedIn = true;
-  res.json('home!!!'); 
-});
 
 module.exports = router;

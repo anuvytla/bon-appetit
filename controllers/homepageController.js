@@ -1,10 +1,8 @@
 const router = require("express").Router();
 var authRouter = require("../routes/auth");
-var apiController = require("./apiController");
+const apiRoutes = require("../routes");
 const menuItems = require("../utils/items");
 const { Customer, Reservation } = require("../models");
-// const {User} = require('../models');
-// const {Todo} = require('../models');
 
 // renders signup/landing page
 router.get("/", async (req, res) => {
@@ -25,13 +23,6 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
   res.render("login", {
-    isLoggedIn: req.session.isLoggedIn,
-  });
-});
-
-router.get("/home", (req, res) => {
-  // res.render("home")
-  res.render("home", {
     isLoggedIn: req.session.isLoggedIn,
   });
 });
@@ -57,8 +48,6 @@ router.get("/menu", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("menu", {
       appetizerItems: JSON.parse(menuItems).appetizerItems,
-      mainItems: JSON.parse(menuItems).mainItems,
-      dessertItems: JSON.parse(menuItems).dessertItems,
       isLoggedIn: req.session.isLoggedIn,
       orderPlaced: req.session.orderPlaced,
     });
@@ -68,7 +57,12 @@ router.get("/menu", (req, res) => {
   }
 });
 
+router.get('/home', function(req, res, next) { 
+  req.session.isLoggedIn = true;
+  res.json('home!!!'); 
+});
+
 router.use("/auth", authRouter);
-router.use("/", apiController);
+router.use("/", apiRoutes);
 
 module.exports = router;

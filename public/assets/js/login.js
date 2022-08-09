@@ -22,7 +22,7 @@ loginBtn?.addEventListener("click", async (event) => {
   try {
     // [TODO] remove after fixes in auth.js
     // const response = await fetch('/api/login')
-    const response = await fetch("/api/login/password", {
+    const response = await fetch("/auth/login/password", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
