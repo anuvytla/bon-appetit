@@ -58,7 +58,7 @@ Has a polished UI
 
 ### Links
 
-- Solution URL: [Git Repository](https://github.com/anuvytla/bon-appetit)
+- Solution URL: [https://github.com/anuvytla/bon-appetit](https://github.com/anuvytla/bon-appetit)
 - Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
 ## My process
@@ -77,7 +77,6 @@ Has a polished UI
 - connect-sqlite3
 - cookie-parser
 - dotenv
-- express
 - express-handlebars
 - express-sesssion
 - inquirer

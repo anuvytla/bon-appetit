@@ -22,6 +22,10 @@ Customer.init (
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
+            validate: {
+                isEmail: true,
+            },
             allowNull: false,
         },
         phone: {
