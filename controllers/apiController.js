@@ -24,7 +24,7 @@ router.post('/orders', async (req, res) => {
         //   customerId: req.session.user.id,
       });
       req.session.orderPlaced = true;
-      
+
       res.json(newOrder);
   } catch (error) {
       console.error(error);
@@ -33,4 +33,4 @@ router.post('/orders', async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = router; 

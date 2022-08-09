@@ -31,7 +31,7 @@ signupBtn.addEventListener('click', async (event) => {
     console.log(name,email,phone,password);
     // posts the user input to the /api/logup endpoint
     try {
-        const response = await fetch('/api/signup', {
+        const response = await fetch('/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
