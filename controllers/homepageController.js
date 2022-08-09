@@ -8,7 +8,7 @@ const { Customer, Reservation } = require("../models");
 // renders signup/landing page
 router.get("/", async (req, res) => {
   if (req.session.isLoggedIn) {
-    let userID = '1066b85c-d35b-45f4-8731-759ec69e4130';
+    let userID = req.user.customerId;
     let user = await Customer.findByPk(userID, {
       // include its associated Products.
       include: [{ model: Reservation }],

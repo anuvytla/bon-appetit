@@ -7,24 +7,23 @@ const Customer = require('../models/customer');
 
 // passport-local tutorial: https://www.passportjs.org/tutorials/password/signup/
 
-const dummy_user = {
-  id: 1,
-  username: "restaurant@test.com",
-    password: "password"
-}
+passport.use(new LocalStrategy(async function verify(username, password, callback) {
+  const customer = await Customer.findOne({ where: { email: username } });
+  console.log(customer);
+  if(customer === null) {
+    callback(null, false, { message: 'Incorrect username.' });
+  }
 
-passport.use(new LocalStrategy(function verify(username, password, callback) {
-  console.log("local",username,password);
-    if(username === dummy_user.username && password === dummy_user.password) {
-      callback(null, dummy_user);
-    } else {
-        callback(null, false, { message: 'Incorrect username or password.' });
-    }
+  if(password === customer.password) {
+    callback(null, customer);
+  } else {
+    callback(null, false, { message: 'Incorrect password.' });
+  }
 }));
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function(customer, cb) {
   process.nextTick(function() {
-      cb(null, { id: user.id, username: user.username });
+      cb(null, { customerId: customer.customerId, email: customer.email });
   });
 });
 
@@ -36,14 +35,14 @@ passport.deserializeUser(function(user, cb) {
 
 // [TODO] username password check is missing, res object not given
 // [TODO] Save session details and set isLoggedIn to true/false
-router.post("/login/password", passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }), function (req, res) {
+router.post("/login/password", passport.authenticate('local', { failureMessage: true }), function (req, res) {
   if (!req.user) {
     console.log("Invalid credentials!");
     req.session.isLoggedIn = false;
   } else {
     req.session.isLoggedIn = true;
   }
-  res.json(req.session.isLoggedIn);;
+  res.json(req.session.isLoggedIn);
 });
 
 router.post('/logout', function(req, res, next) {
@@ -61,12 +60,13 @@ router.post('/signup', async function(req, res, next) {
         'password': req.body.password
       });
       var user = {
-        id: newCustomer.customerId,
-        username: newCustomer.email
+        customerId: newCustomer.customerId,
+        email: newCustomer.email
       };
       req.login(user, function(err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        req.session.isLoggedIn = true;
+        res.json(true);
       });
   });
 
