@@ -1,12 +1,12 @@
 
-<h1>Check out our Menu</h1>
+<h1 class="h1-container text-white text-center">Check out our Menu</h1>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   {{#each appetizerItems as |appetizerItem|}}
   <div class="col">
     
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
+    <div class="card h-100 orange-border m-3">
+      <img src={{appetizerItem.img}} class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{appetizerItem.name}}</h5>
         <p class="card-text">{{appetizerItem.description}}</p>
@@ -22,7 +22,48 @@
   {{/each}}
 </div>
 
-<button id="placeOrderBtn">Place Order</button>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {{#each mainItems as |mainItem|}}
+  <div class="col">
+    
+    <div class="card h-100 orange-border m-3">
+      <img src={{mainItem.img}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{mainItem.name}}</h5>
+        <p class="card-text">{{mainItem.description}}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <span>${{mainItem.price}}</span>
+        <input id="{{mainItem.id}}Quantity" type="number" aria-label="quantity" placeholder="Enter quantity(1-5)">
+        
+      </div>
+    </div>
+    
+  </div>
+  {{/each}}
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {{#each dessertItems as |dessertItem|}}
+  <div class="col">
+    
+    <div class="card h-100 orange-border m-3">
+      <img src={{dessertItem.img}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{dessertItem.name}}</h5>
+        <p class="card-text">{{dessertItem.description}}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <span>${{dessertItem.price}}</span>
+        <input id="{{dessertItem.id}}Quantity" type="number" aria-label="quantity" placeholder="Enter quantity(1-5)">        
+      </div>
+    </div>    
+  </div>
+  {{/each}}
+</div>
+
+<button id="placeOrderBtn" class="btn m-5">Place Order</button>
 
 {{#if orderPlaced}} 
 <div class="alert alert-success" role="alert">

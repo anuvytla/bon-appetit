@@ -8,12 +8,18 @@
 
 .navbar-brand {
   font-family: "Homemade Apple", sans-serif, cursive;
-  text-align: center;
-  margin: auto;
+  margin-left: 0.2rem;
   color: #ff7f00;
   font-weight: bolder;
-  font-size: 3rem;
+  font-size: 2rem;
+  text-decoration: none;
 }
+
+.h1-container{
+  background-color: black;
+  opacity: 0.7;
+  padding: 2%;
+ }
 
 footer {
   color: white;
@@ -27,6 +33,29 @@ footer {
 .btn {
   background-color: #ff7f00;
   border: 1px solid #ff7f00;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+.btn:hover,
+.btn:visited,
+.btn:active{
+  background-color: #FFA332;
+  border: 1px solid #ff7f00;
+  color: #004b49;
+  
+}
+
+#logo {
+  color: #ff7f00;
+}
+
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: #ff7f00;
 }
 
 i {
@@ -38,7 +67,22 @@ i {
 }
 
 .main-container {
-  background: #333 url('/assets/images/homepage.jpg') no-repeat center center/cover;
-  height: 100vh;
-  
+  background: #333 url('/assets/images/homepage.jpg') no-repeat center center/cover fixed;
+  height: 100vh;  
+  overflow: auto;
+}
+
+.card {
+  width: 18rem;
+}
+
+.home-card {
+  width: 70vw;
+  overflow: hidden;
+}
+
+.card-header{
+  color: #ff7f00;
+  background-color: #004b49;
+  border: 5px solid #004b49;
 }

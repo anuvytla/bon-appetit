@@ -9,11 +9,12 @@ const Customer = require('../models/customer');
 
 const dummy_user = {
   id: 1,
-  username: "restaurant",
+  username: "restaurant@test.com",
     password: "password"
 }
 
 passport.use(new LocalStrategy(function verify(username, password, callback) {
+  console.log("local",username,password);
     if(username === dummy_user.username && password === dummy_user.password) {
       callback(null, dummy_user);
     } else {
@@ -93,8 +94,14 @@ router.post('/signup', async function(req, res, next) {
   // [TODO] Signup should fail if email already exists in db
       req.login(user, function(err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        req.session.isLoggedIn = true;
+        res.json(true);
   });
+});
+
+router.get('/home', function(req, res, next) { 
+  req.session.isLoggedIn = true;
+  res.json('home!!!'); 
 });
 
 module.exports = router;
