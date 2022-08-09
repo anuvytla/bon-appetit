@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs');
 
 const {
     Customer
@@ -16,8 +17,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const newCustomer = await Customer.create(req.body);
-        res.json(newCustomer);
+        const newCustomer = req.body;
+        newCustomer.password = await bcrypt.hash(newCustomer.password, 8);
+        const createdCustomer = await Customer.create(newCustomer);
+        res.json(createdCustomer);
     } catch (error) {
         res.status(500).json({ error });
     }  

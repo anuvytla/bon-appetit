@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
+const Reservation = require('./reservation');
 
 class Customer extends Model {}
 
@@ -8,10 +9,12 @@ Customer.init (
     {
         // foreign key in reservation table
         customerId: {
-            type: DataTypes.UUID,
-            primaryKey: true,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            // type: DataTypes.UUID,
+            // defaultValue: DataTypes.UUIDV4,
             allowNull: false,
+            primaryKey: true,
         },
         name: {
             type: DataTypes.STRING,
@@ -19,15 +22,19 @@ Customer.init (
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
+            validate: {
+                isEmail: true,
+            },
             allowNull: false,
         },
         phone: {
             type: DataTypes.STRING,
-            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+            len: [8],
         }
     },
     {
@@ -36,5 +43,6 @@ Customer.init (
         modelName: 'customers',
     }
 );
+
 
 module.exports = Customer;
