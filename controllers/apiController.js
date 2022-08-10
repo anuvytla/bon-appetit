@@ -13,8 +13,7 @@ router.post('/orders', async (req, res) => {
   if(!req.session.isLoggedIn){
       res.status(401).json({error: 'You must be logged in to do that'});
   }
-  console.log(req.body.order,)
-  console.log(req.body.totalPrice,)
+
   // TODO: need session user id from auth
   // console.log(req.session.user.id,) 
 

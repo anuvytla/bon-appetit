@@ -81,6 +81,10 @@ i {
   overflow: hidden;
 }
 
+.signup-card {
+  width: 25rem;
+}
+
 .card-header{
   color: #ff7f00;
   background-color: #004b49;
@@ -99,3 +103,6 @@ i {
   font-size: 2rem;
 }
 
+.quantity {
+  width: 80%;
+}

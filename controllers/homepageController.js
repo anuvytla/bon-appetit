@@ -29,7 +29,6 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/home", (req, res) => {
-  // res.render("home")
   res.render("home", {
     isLoggedIn: req.session.isLoggedIn,
   });
@@ -53,8 +52,19 @@ router.get("/reservation", (req, res) => {
   }
 });
 
+router.get("/profile", (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.render("dashboard", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  } else {
+    res.render("login", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  }
+});
+
 router.get("/menu", (req, res) => {
-  // [TODO] href => 2 places (main.js called from user, menu.js called from place_order)
   if (req.session.isLoggedIn) {
     res.render("menu", {
       appetizerItems: JSON.parse(menuItems).appetizerItems,
