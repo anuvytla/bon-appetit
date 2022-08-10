@@ -14,6 +14,11 @@ if (process.env.JAWSDB_URL) {
             host: "localhost",
             dialect: "mysql",
             port: 3306,
+            timezone: "-07:00",
+            dialectOptions: {
+                dateStrings: true,
+                typeCast: true
+          },
         }
 
     );
