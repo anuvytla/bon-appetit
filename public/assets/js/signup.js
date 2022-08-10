@@ -17,7 +17,7 @@ signupBtn.addEventListener('click', async (event) => {
         return;
     }
     // checks that password is greater than 6 characters
-    if(password.trim().length < 6){
+    if(password.trim().length < 8){
         alert('Please enter a valid password. Password must be 6 characters long.');
         return;
     }

@@ -22,7 +22,7 @@ router.post('/orders', async (req, res) => {
       const newOrder = await Order.create({
           order: req.body.order,
           totalPrice: req.body.totalPrice,
-        //   customerId: req.session.user.id,
+          // customerId: req.session.user.id,
       });
       req.session.orderPlaced = true;
       req.session.totalPrice = req.body.totalPrice;
