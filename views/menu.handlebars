@@ -1,6 +1,6 @@
 {{#if orderPlaced}}
   <div class="alert alert-success h4" role="alert">
-    Order placed successfully!
+    Order placed successfully! Your total price was ${{totalPrice}}.
   </div>
 {{/if}}
 
@@ -13,7 +13,7 @@
       <div class="card h-100 orange-border m-3">
         <img src={{appetizerItem.img}} class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{appetizerItem.name}}</h5>
+          <h5 class="card-title">{{appetizerItem.id}}. {{appetizerItem.name}}</h5>
           <p class="card-text">{{appetizerItem.description}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
@@ -37,7 +37,7 @@
       <div class="card h-100 orange-border m-5">
         <img src={{mainItem.img}} class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{mainItem.name}}</h5>
+          <h5 class="card-title">{{mainItem.id}}. {{mainItem.name}}</h5>
           <p class="card-text">{{mainItem.description}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
@@ -61,7 +61,7 @@
       <div class="card h-100 orange-border m-3">
         <img src={{dessertItem.img}} class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{dessertItem.name}}</h5>
+          <h5 class="card-title">{{dessertItem.id}}. {{dessertItem.name}}</h5>
           <p class="card-text">{{dessertItem.description}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">

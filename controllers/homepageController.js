@@ -28,6 +28,13 @@ router.get("/login", (req, res) => {
   });
 });
 
+router.get("/home", (req, res) => {
+  // res.render("home")
+  res.render("home", {
+    isLoggedIn: req.session.isLoggedIn,
+  });
+});
+
 router.get("/signup", (req, res) => {
   res.render("signup", {
     isLoggedIn: req.session.isLoggedIn,
@@ -40,7 +47,9 @@ router.get("/reservation", (req, res) => {
       isLoggedIn: req.session.isLoggedIn,
     });
   } else {
-    res.redirect("/login");
+    res.render("login", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
   }
 });
 
@@ -49,18 +58,19 @@ router.get("/menu", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("menu", {
       appetizerItems: JSON.parse(menuItems).appetizerItems,
+      mainItems: JSON.parse(menuItems).mainItems,
+      dessertItems: JSON.parse(menuItems).dessertItems,
       isLoggedIn: req.session.isLoggedIn,
       orderPlaced: req.session.orderPlaced,
+      totalPrice: req.session.totalPrice,
     });
-    req.session.orderPlaced = false;
+    
+    req.session.orderPlaced = false;    
   } else {
-    res.redirect("/login");
+    res.render("login", {
+      isLoggedIn: req.session.isLoggedIn,      
+    });
   }
-});
-
-router.get('/home', function(req, res, next) { 
-  req.session.isLoggedIn = true;
-  res.json('home!!!'); 
 });
 
 router.use("/auth", authRouter);
