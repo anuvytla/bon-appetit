@@ -7,9 +7,13 @@ class Reservation extends Model {}
 Reservation.init (
     {
         reservationId: {
-            type: DataTypes.UUID,
+            // type: DataTypes.UUID,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
             primaryKey: true,
-            defaultValue: DataTypes.UUIDV4
+            // defaultValue: DataTypes.UUIDV4
+           
         },
         partySize: {
             type: DataTypes.INTEGER,
@@ -23,12 +27,12 @@ Reservation.init (
             type: DataTypes.TIME,
             allowNull: false,
         },
-        // primary key for customer table
-        customerID: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            foreignKey: true,
-        },
+        // primary key for customer table 
+        // customerID: {
+        //     type: DataTypes.UUID,
+        //     allowNull: false,
+        //     foreignKey: true,
+        // },
     },
     {
         sequelize,

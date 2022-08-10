@@ -1,15 +1,25 @@
 const router = require("express").Router();
 var authRouter = require("../routes/auth");
-var apiController = require("./apiController");
+const apiRoutes = require("../routes");
+const apiController = require("./apiController");
 const menuItems = require("../utils/items");
-// const {User} = require('../models');
-// const {Todo} = require('../models');
+const { Customer, Reservation } = require("../models");
 
 // renders signup/landing page
-router.get("/", (req, res) => {
-  res.render("login", {
-    isLoggedIn: req.session.isLoggedIn,
-  });
+router.get("/", async (req, res) => {
+  if (req.session.isLoggedIn) {
+    let userID = req.user.customerId;
+    let user = await Customer.findByPk(userID, {
+      // include its associated Products.
+      include: [{ model: Reservation }],
+    });
+    res.render("dashboard", {
+      isLoggedIn: req.session.isLoggedIn,
+      user: user.get({plain: true})
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 router.get("/login", (req, res) => {
@@ -63,7 +73,8 @@ router.get("/menu", (req, res) => {
   }
 });
 
-router.use("/api", authRouter);
+router.use("/auth", authRouter);
+router.use("/", apiRoutes);
 router.use("/api", apiController);
 
 module.exports = router;
