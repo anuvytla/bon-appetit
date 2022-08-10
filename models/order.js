@@ -22,7 +22,7 @@ Order.init(
             allowNull: false,
         },
         customerId: {
-            type: DataTypes.UUID,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'customers',
                 key: 'customerId',
