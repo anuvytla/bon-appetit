@@ -12,12 +12,12 @@ passport.use(new LocalStrategy(async function verify(username, password, callbac
   console.log(customer);
   if(customer === null) {
     callback(null, false, { message: 'Incorrect username.' });
-  }
-
-  if(password === customer.password) {
-    callback(null, customer);
   } else {
-    callback(null, false, { message: 'Incorrect password.' });
+    if(password === customer.password) {
+      callback(null, customer);
+    } else {
+      callback(null, false, { message: 'Incorrect password.' });
+    }
   }
 }));
 
