@@ -1,8 +1,13 @@
 const router = require('express').Router();
+const date = require('date-and-time');
+const { Op } = require('sequelize');
 
 const {
     Reservation
 } = require('../../../models');
+
+const max_reservations = 10;
+const reservation_window = 30;
 
 router.get('/', async (req, res) => {
     try{
@@ -17,13 +22,31 @@ router.post('/', async (req, res) => {
     try{
         let customerId = req.user.customerId;
         let { partySize, reservationDate, reservationTime } = req.body;
-        const newReservation = await Reservation.create({
-            customerID: customerId,
-            reservationDate: reservationDate,
-            reservationTime: reservationTime,
-            partySize: partySize
+        let dt = date.parse(reservationDate, 'YYYY-MM-DD');
+        let dateTime = date.parse(reservationTime, 'HH:mm');
+        let minTime = date.addMinutes(dateTime, -reservation_window);
+        let maxTime = date.addMinutes(dateTime, reservation_window);
+        let {count} = await Reservation.findAndCountAll({
+            where: {
+                reservationDate: {
+                    [Op.like]: reservationDate
+                },
+                reservationTime : {
+                    [Op.between]:[date.format(minTime, 'HH:mm'), date.format(maxTime, 'HH:mm')]
+                }
+            }
         });
-        res.json(newReservation);
+        if(count < max_reservations){
+            const newReservation = await Reservation.create({
+                customerID: customerId,
+                reservationDate: dt,
+                reservationTime: reservationTime,
+                partySize: partySize
+            });
+            res.json(newReservation);
+        }else {
+            res.status(403).json( "Reservations are full at this time" );
+        }
     } catch (error) {
         res.status(500).json({ error });
     }  
