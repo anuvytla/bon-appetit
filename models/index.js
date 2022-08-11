@@ -13,10 +13,13 @@ Customer.hasMany(Order, {
     onDelete: 'CASCADE',
 });
 
+// Each reservation belongs to a customer. linked by foreign key customerID
 Reservation.belongsTo(Customer, {
     foreignKey: 'customerId',
 });
 
+// Customer can have many reservations. linked by foreign key customerID
+// All reservations should be deleted if the customer is deleted
 Customer.hasMany(Reservation, {
     foreignKey: 'customerId',
     onDelete: 'CASCADE',
