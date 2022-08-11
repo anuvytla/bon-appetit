@@ -41,6 +41,16 @@ Customer.init (
         sequelize,
         timestamps: true,
         modelName: 'customers',
+        hooks: {
+            beforeCreate: async (customer) => {
+                customer.email = customer.email.toLowerCase();
+                return customer;
+            },
+            beforeUpdate: (customer) => {
+                customer.email = customer.email.toLowerCase();
+                return customer;
+            },
+        }
     }
 );
 
