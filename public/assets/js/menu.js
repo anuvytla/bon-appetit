@@ -1,13 +1,14 @@
-// const menuItems = require('../../../utils/items') Fetch the items.js to check id
+// Selecting the UI elements
 const placeOrderBtn = document.getElementById("placeOrderBtn");
 
+// Event listener
 placeOrderBtn.addEventListener("click", async () => {
-  // window.location.href = "/signup";
   const response = await fetch("/api/items");
   menuItems = await response.json();
   orderArray = [];
   totalPrice = 0;
-  
+
+  // Reading the input by the user and basic validation to send the item and its quantity
   JSON.parse(menuItems).appetizerItems.forEach((element) => {
     let quantity = document.getElementById(element.id + "Quantity").value;
     if (quantity > 5 || quantity < 0) {
@@ -17,10 +18,11 @@ placeOrderBtn.addEventListener("click", async () => {
 
     if (quantity) {
       totalPrice += quantity * element.price;
-      orderArray.push({ quantity: quantity, item: element.id });
+      orderArray.push({ quantity: quantity, item: element.name });
     }
   });
 
+  // Reading the input by the user and basic validation to send the item and its quantity
   JSON.parse(menuItems).mainItems.forEach((element) => {
     let quantity = document.getElementById(element.id + "Quantity").value;
     if (quantity > 5 || quantity < 0) {
@@ -29,10 +31,11 @@ placeOrderBtn.addEventListener("click", async () => {
     }
     if (quantity) {
       totalPrice += quantity * element.price;
-      orderArray.push({ quantity: quantity, item: element.id });
+      orderArray.push({ quantity: quantity, item: element.name });
     }
   });
 
+  // Reading the input by the user and basic validation to send the item and its quantity
   JSON.parse(menuItems).dessertItems.forEach((element) => {
     let quantity = document.getElementById(element.id + "Quantity").value;
     if (quantity > 5 || quantity < 0) {
@@ -41,12 +44,13 @@ placeOrderBtn.addEventListener("click", async () => {
     }
     if (quantity) {
       totalPrice += quantity * element.price;
-      orderArray.push({ quantity: quantity, item: element.id });
+      orderArray.push({ quantity: quantity, item: element.name });
     }
   });
 
+  // Sending the order details to the backend
   orderString = JSON.stringify(orderArray);
-  console.log(orderString);
+  
   if (totalPrice > 0) {
     try {
       const response = await fetch("/api/orders", {
@@ -62,27 +66,8 @@ placeOrderBtn.addEventListener("click", async () => {
 
       await response.json();
       window.location.href = "/menu";
-      // orderPaced => POST /menu body
-      // orderPlaced = response.orderPlaced
-      // orderPlaced = true;
-      // window.location.reload();
     } catch (error) {
       alert(error);
     }
   }
-  // try {
-  //   const response = await fetch("/menu", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "totalprice" : totalPrice,
-  //       "order": orderString,        
-  //     },
-      
-  //   });
-  //   // await response.json();
-  //   
-  // } catch (error) {
-  //   alert(error);  
-  // }
 });

@@ -1,6 +1,6 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-
+// Model pf the Order table in the DB
 class Order extends Model {}
 
 Order.init(
@@ -9,6 +9,13 @@ Order.init(
             type: DataTypes.UUID,
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
+        },
+        customerId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'customers',
+                key: 'customerId',
+            },
         },
         order: {
             type: DataTypes.TEXT('long'),
@@ -20,14 +27,7 @@ Order.init(
         totalPrice: {
             type: DataTypes.FLOAT,
             allowNull: false,
-        },
-        customerId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'customers',
-                key: 'customerId',
-            },
-        }
+        },  
     },
     {
         sequelize,

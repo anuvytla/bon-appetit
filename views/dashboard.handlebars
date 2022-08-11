@@ -1,10 +1,67 @@
-<section>
-    <p>Name: {{user.name}}</p>
-    <p>Email: {{user.email}}</p>
-    <p>Phone: {{user.phone}}</p>
-</section>
-<section>
-  {{#each user.reservations as |reservation| }}
-    {{> reservation-card}}
-  {{/each}}
-</section>
+{{!-- Profile page handlerbar with the user details,upcoming reservations and pending orders --}}
+{{#if isLoggedIn}} 
+<h1 class="menu-heading m-auto mt-4 p-2">Profile</h1>
+
+<div class="container d-flex justify-content-center my-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card home-card orange-border">
+        <div class="card-body h5">
+          <h3 class="card-title tab-heading">Profile Details</h3>
+
+          <section >
+              <p><b>Name:</b> {{user.name}}</p>
+              <p><b>Email:</b> {{user.email}}</p>
+              <p><b>Phone:</b> {{user.phone}}</p>
+          </section>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<h1 class="menu-heading m-auto mt-4 p-2">Reservation Details</h1>
+
+<div class="container d-flex justify-content-center my-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card home-card orange-border">
+        <div class="card-body h5">
+          
+          <section>
+            {{#each user.reservations as |reservation| }}
+              {{> reservation-card}}
+              
+            {{/each}}            
+          </section>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<h1 class="menu-heading m-auto mt-4 p-2">Order Details</h1>
+
+<div class="container d-flex justify-content-center my-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card home-card orange-border">
+        <div class="card-body h5">
+          
+          <section>
+            {{#each orderHistory as |order| }}
+              {{> order}}
+            
+            {{/each}}            
+          </section>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+{{/if}}

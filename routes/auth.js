@@ -42,7 +42,8 @@ router.post("/login/password", passport.authenticate('local', { failureMessage: 
   if (!req.user) {
     req.session.isLoggedIn = false;
   } else {
-    req.session.isLoggedIn = true;
+    req.session.isLoggedIn = true;    
+    req.session.customerId = req.user.customerId;
   }
   res.json(req.session.isLoggedIn);
 });
@@ -71,8 +72,11 @@ router.post('/signup', async function(req, res, next) {
         email: newCustomer.email
       };
       req.login(user, function(err) {
-        if (err) { return next(err); }
+        if (err) { 
+          return next(err); 
+        }
         req.session.isLoggedIn = true;
+        req.session.customerId = req.user.customerId;
         res.json(true);
       });
   });

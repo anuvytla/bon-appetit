@@ -1,4 +1,4 @@
-
+// Menu items and their corresponding details
 appetizerItems = [
   {
     img: "/assets/images/mushroom.avif",
@@ -75,7 +75,7 @@ mainItems = [
       "Rigatoni Pasta, Italian Cherry Tomatoes, Parmesan, Fresh Basil and Pancetta Tossed with Spicy Vodka Sauce",
     price: 15.99,
   },
-]
+];
 
 dessertItems = [
   {
@@ -102,8 +102,12 @@ dessertItems = [
       "Italian Custard Made with Mascarpone, Whipped Cream, Lady Fingers, Chocolate, Marsala and Coffee Liqueur",
     price: 12.99,
   },
-]
+];
 
-menuItems = JSON.stringify({"appetizerItems": appetizerItems, "mainItems": mainItems, "dessertItems": dessertItems,});
+menuItems = JSON.stringify({
+  appetizerItems: appetizerItems,
+  mainItems: mainItems,
+  dessertItems: dessertItems,
+});
 
 module.exports = menuItems;

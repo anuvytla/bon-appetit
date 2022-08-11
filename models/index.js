@@ -2,13 +2,12 @@ const Customer = require('./customer');
 const Reservation = require('./reservation');
 const Order = require('./order');
 
-// Each order belongs to a customer. linked by foreign key customerId
+// Customer and Order table relationship
 Order.belongsTo(Customer, {
     foreignKey: 'customerId',
 });
 
-// Customer can have many orders. linked by foreign key customerId
-// All orders should be deleted if the customer is deleted
+// Customer and Order table relationship
 Customer.hasMany(Order, {
     foreignKey: 'customerId',
     onDelete: 'CASCADE',
@@ -16,13 +15,13 @@ Customer.hasMany(Order, {
 
 // Each reservation belongs to a customer. linked by foreign key customerID
 Reservation.belongsTo(Customer, {
-    foreignKey: 'customerID',
+    foreignKey: 'customerId',
 });
 
 // Customer can have many reservations. linked by foreign key customerID
 // All reservations should be deleted if the customer is deleted
 Customer.hasMany(Reservation, {
-    foreignKey: 'customerID',
+    foreignKey: 'customerId',
     onDelete: 'CASCADE',
 });
 
