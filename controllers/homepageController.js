@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
       // include its associated Products.
       include: [ Reservation, Order ],
     });
-    
+    // code for displaying the order history from the DB in the correct format on screen
     orderHistory = [];
     
     user.orders.forEach(order => {
@@ -26,8 +26,7 @@ router.get("/", async (req, res) => {
     }
       orderHistory.push(orderDict)
     }); 
-    // console.log(user,"HELLO1");
-    // console.log(user.get({plain: true}),"HELLO2");
+
     res.render("dashboard", {
       isLoggedIn: req.session.isLoggedIn,
       user: user.get({plain: true}),
@@ -38,12 +37,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Render Login page
 router.get("/login", (req, res) => {
   res.render("login", {
     isLoggedIn: req.session.isLoggedIn,
   });
 });
 
+// Render the home page when the user is logged in
 router.get("/home", (req, res) => {
   
   if (req.session.isLoggedIn) {
@@ -57,12 +58,14 @@ router.get("/home", (req, res) => {
   }
 });
 
+// Render the sign up page
 router.get("/signup", (req, res) => {
   res.render("signup", {
     isLoggedIn: req.session.isLoggedIn,
   });
 });
 
+// Render the reservation page if the user is logged in
 router.get("/reservation", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("reservation", {
@@ -75,6 +78,7 @@ router.get("/reservation", (req, res) => {
   }
 });
 
+// Render the profile page if the user is logged in
 router.get("/profile", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("dashboard", {
@@ -87,6 +91,7 @@ router.get("/profile", (req, res) => {
   }
 });
 
+// Render the menu page if the user is logged in
 router.get("/menu", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("menu", {

@@ -1,3 +1,4 @@
+// Menu items and their corresponding details
 appetizerItems = [
   {
     img: "/assets/images/mushroom.avif",
