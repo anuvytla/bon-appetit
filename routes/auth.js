@@ -9,7 +9,7 @@ const Customer = require('../models/customer');
 
 passport.use(new LocalStrategy(async function verify(username, password, callback) {
   const customer = await Customer.findOne({ where: { email: username } });
-  console.log(customer);
+  // console.log(customer);
   if(customer === null) {
     callback(null, false, { message: 'Incorrect username.' });
   } else {
@@ -40,7 +40,8 @@ router.post("/login/password", passport.authenticate('local', { failureMessage: 
     console.log("Invalid credentials!");
     req.session.isLoggedIn = false;
   } else {
-    req.session.isLoggedIn = true;
+    req.session.isLoggedIn = true;    
+    req.session.customerId = req.user.customerId;
   }
   res.json(req.session.isLoggedIn);
 });
@@ -64,8 +65,11 @@ router.post('/signup', async function(req, res, next) {
         email: newCustomer.email
       };
       req.login(user, function(err) {
-        if (err) { return next(err); }
+        if (err) { 
+          return next(err); 
+        }
         req.session.isLoggedIn = true;
+        req.session.customerId = req.user.customerId;
         res.json(true);
       });
   });

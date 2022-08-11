@@ -6,7 +6,6 @@ const mainLoginBtn = document.getElementById("mainLoginBtn");
 const profileBtn = document.getElementById("profileBtn");
 
 signUpBtn?.addEventListener("click", async () => {
-  console.log("Signup");
   window.location.href = "/signup";
 });
 

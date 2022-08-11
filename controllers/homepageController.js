@@ -3,7 +3,7 @@ var authRouter = require("../routes/auth");
 const apiRoutes = require("../routes");
 const apiController = require("./apiController");
 const menuItems = require("../utils/items");
-const { Customer, Reservation } = require("../models");
+const { Customer, Reservation, Order } = require("../models");
 
 // renders signup/landing page
 router.get("/", async (req, res) => {
@@ -11,11 +11,27 @@ router.get("/", async (req, res) => {
     let userID = req.user.customerId;
     let user = await Customer.findByPk(userID, {
       // include its associated Products.
-      include: [{ model: Reservation }],
+      include: [ Reservation, Order ],
     });
+    
+    orderHistory = [];
+    
+    user.orders.forEach(order => {
+
+      items = JSON.parse(order.order) ;
+
+      orderDict = {"itemsJson": items, "totalPrice": order.totalPrice,
+      "orderDate": order.createdAt.split(" ")[0],
+      "orderTime": order.createdAt.split(" ")[1]
+    }
+      orderHistory.push(orderDict)
+    }); 
+    // console.log(user,"HELLO1");
+    // console.log(user.get({plain: true}),"HELLO2");
     res.render("dashboard", {
       isLoggedIn: req.session.isLoggedIn,
-      user: user.get({plain: true})
+      user: user.get({plain: true}),
+      orderHistory: orderHistory,
     });
   } else {
     res.redirect("/login");
@@ -29,9 +45,16 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/home", (req, res) => {
-  res.render("home", {
-    isLoggedIn: req.session.isLoggedIn,
-  });
+  
+  if (req.session.isLoggedIn) {
+    res.render("home", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  } else {
+    res.render("login", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  }
 });
 
 router.get("/signup", (req, res) => {
