@@ -25,8 +25,7 @@ router.post('/orders', async (req, res) => {
       req.session.orderPlaced = true;
       req.session.totalPrice = req.body.totalPrice;
       res.json(newOrder);
-  } catch (error) {
-      console.error(error);
+  } catch (error) {     
       res.status(500).json({error});
   }
 
@@ -38,8 +37,7 @@ router.get('/orders', async (req, res) => {
         res.status(401).json({error: 'You must be logged in to do that'});
     }
     try {
-        const orders = await Order.findAll({ where: { customerId: req.session.customerId } });
-        console.log(orders);
+        const orders = await Order.findAll({ where: { customerId: req.session.customerId } });    
         res.json(orders)
     } catch (error) {
         res.status(500).json({error});
