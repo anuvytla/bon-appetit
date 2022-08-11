@@ -43,7 +43,7 @@ router.get('/:customerId', async (req, res) => {
 
 // update a customer by its `id` value
 // Calls the update method on the Customer model
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     // construct update object with the fields we need to update.
     customer_update = {};
     if(req.body.name) {

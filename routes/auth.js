@@ -4,6 +4,7 @@ var LocalStrategy = require('passport-local');
 var crypto = require('crypto');
 var router = express.Router();
 const Customer = require('../models/customer');
+const bcrypt = require('bcryptjs');
 
 // setup passport authentication with username & password.
 passport.use(new LocalStrategy(async function verify(username, password, callback) {
@@ -13,8 +14,9 @@ passport.use(new LocalStrategy(async function verify(username, password, callbac
   if(customer === null) {
     callback(null, false, { message: 'Incorrect username.' });
   } else {
+    let password_matched = await bcrypt.compare(password, customer.password);
     // login if the password matches.
-    if(password === customer.password) {
+    if(password_matched) {
       callback(null, customer);
     } else {
       // fail login if the password doesn't match.
@@ -59,6 +61,7 @@ router.post('/logout', function(req, res, next) {
 
 // Signup
 router.post('/signup', async function(req, res, next) {
+    req.body.password = await bcrypt.hash(req.body.password, 8);
   // Insert new customer into the DB.
     const newCustomer = await Customer.create({
         'name': req.body.name,
