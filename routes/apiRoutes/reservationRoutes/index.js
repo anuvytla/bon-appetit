@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     try{
         let customerId = req.user.customerId;
         let { partySize, reservationDate, reservationTime } = req.body;
-        let dt = date.parse(reservationDate, 'YYYY-MM-DD');
+        let dt = date.parse(reservationDate, 'MM/DD/YYYY');
         let dateTime = date.parse(reservationTime, 'HH:mm');
         let minTime = date.addMinutes(dateTime, -reservation_window);
         let maxTime = date.addMinutes(dateTime, reservation_window);

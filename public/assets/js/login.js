@@ -36,13 +36,17 @@ loginBtn?.addEventListener("click", async (event) => {
       })
     );
     console.log(username, password);
-    loginStatus = await response.json();
-    if (loginStatus) {
-      console.log("login status success");
-      window.location.href = "/home";
+    if(response.status == 200) {
+      loginStatus = await response.json();
+      if (loginStatus) {
+        console.log("login status success");
+        window.location.href = "/home";
+      } else {
+        console.log("login status fail");
+        window.location.href = "/login";
+      }
     } else {
-      console.log("login status fail");
-      window.location.href = "/login";
+      alert("Invalid username or password");
     }
   } catch (error) {
     alert(error);
