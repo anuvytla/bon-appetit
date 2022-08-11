@@ -20,7 +20,14 @@ Customer.init (
         },
         email: {
             type: DataTypes.STRING,
-            unique: true,
+            // unique: true,
+            validate: {
+                emailUnique(email) {
+                    if (email.value in Customer.email) {
+                        throw new Error ('Email already exist: choose another email');
+                    }
+                }
+            },
             validate: {
                 isEmail: true,
             },
