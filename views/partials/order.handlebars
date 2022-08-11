@@ -1,0 +1,18 @@
+<section orderId="{{id}}">
+
+  <h3 class="tab-heading">Date: {{orderDate}}</h3>
+
+  <p><b>Order placed at: {{orderTime}}</b></p>
+
+  {{#each itemsJson as |item|}}
+    <div>
+      <span>{{item.quantity}}</span>
+      x
+      <span>{{item.item}}</span>
+    </div>
+
+  {{/each}}
+  <br />
+  <p><b>Total Price: {{totalPrice}}</b></p>
+
+</section>

@@ -17,11 +17,8 @@ loginBtn?.addEventListener("click", async (event) => {
     alert("Please enter a valid password. Password must be 6 characters long.");
     return;
   }
-  // console.log("HIIII");
-  // posts the user input to the /api/logup endpoint
+
   try {
-    // [TODO] remove after fixes in auth.js
-    // const response = await fetch('/api/login')
     const response = await fetch("/auth/login/password", {
       method: "POST",
       headers: {

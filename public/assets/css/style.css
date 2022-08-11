@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap');
 
 * {
   box-sizing: border-box;
   margin:0;
   padding: 0;
+  font-family: 'Zilla Slab', serif;
 }
 
 .navbar-brand {
@@ -81,6 +83,10 @@ i {
   overflow: hidden;
 }
 
+.signup-card {
+  width: 25rem;
+}
+
 .card-header{
   color: #ff7f00;
   background-color: #004b49;
@@ -89,13 +95,32 @@ i {
 
 .menu-heading{
   color: #ff7f00;
-  background-color: white;
+  background-color: #004b49;
   border: 3px solid #ff7f00;
   width: max-content;
   border-radius: 10px;
+}
+
+.tab-heading{
+  color: #ff7f00;
+  background-color: #004b49;  
+  width: 100%; 
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 400;
 }
 
 #placeOrderBtn {
   font-size: 2rem;
 }
 
+.quantity {
+  width: 80%;
+}
+
+
+@media screen and (max-width: 768px) {
+  #mainBtn button {
+    margin:  10px;
+  }
+}

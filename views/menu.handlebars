@@ -1,6 +1,6 @@
 {{#if orderPlaced}}
   <div class="alert alert-success h4" role="alert">
-    Order placed successfully! Your total price was ${{totalPrice}}.
+    Order placed successfully! Your total price is ${{totalPrice}}.
   </div>
 {{/if}}
 
@@ -21,6 +21,7 @@
           <input
             id="{{appetizerItem.id}}Quantity"
             type="number"
+            class="quantity"
             aria-label="quantity"
             placeholder="Enter quantity(1-5)"
           />
@@ -34,7 +35,7 @@
 <div class="row row-cols-1 row-cols-md-3">
   {{#each mainItems as |mainItem|}}
     <div class="col d-flex justify-content-evenly my-5">
-      <div class="card h-100 orange-border m-5">
+      <div class="card h-100 orange-border m-3">
         <img src={{mainItem.img}} class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title">{{mainItem.id}}. {{mainItem.name}}</h5>
@@ -45,6 +46,7 @@
           <input
             id="{{mainItem.id}}Quantity"
             type="number"
+            class="quantity"
             aria-label="quantity"
             placeholder="Enter quantity(1-5)"
           />
@@ -69,6 +71,7 @@
           <input
             id="{{dessertItem.id}}Quantity"
             type="number"
+            class="quantity"
             aria-label="quantity"
             placeholder="Enter quantity(1-5)"
           />

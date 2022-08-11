@@ -1,37 +1,74 @@
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<link
+  rel="stylesheet"
+  href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"
+/>
+
 <div class="alert alert-dismissible fade show" role="alert">
-    <h3 id="alert-text"></h3>
+  <h3 id="alert-text"></h3>
 </div>
-<section>
-<h1>Reservation</h1>
-<form id="new-reservation">
-<div>
-    <label for="date-input">Date</label>
-    <input type="text" name="reservationDate" id="reservationDate"/>
-</div>
-<div>
-    <label for="time-input">Time</label>
-    <input type="text" name="reservationTime" id="reservationTime"/>
-</div>
-<div>
-    <label for="size-input">How Many</label>
-    <select name="partySize" id="partySize">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-</div>
-<button type="submit">Reserve</button>
-</form>
-</section>
+
+<h1 class="menu-heading m-auto mt-4 p-2">Reservation</h1>
+
+{{#if isLoggedIn}}
+  <div class="container d-flex justify-content-center my-5">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card orange-border">
+          <div class="card-body">
+            <h5 class="card-title">Reserve a table</h5>
+            <section>
+              <form id="new-reservation">
+                <div class="mb-3">
+                  <label for="date-input" class="form-label">Date</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="reservationDate"
+                    id="reservationDate"
+                    placeholder="MM/DD/YYYY"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="time-input" class="form-label">Time</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="reservationTime"
+                    id="reservationTime"
+                    placeholder="HH:MM (24 hrs format)"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="size-input" class="form-label">Party Size</label>
+                  <select  class="form-control" name="partySize" id="partySize">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+                <button class="btn" type="submit">Reserve</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{{/if}}
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<script
+  src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"
+></script>
 <script src="/assets/js/reservations.js"></script>
