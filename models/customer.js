@@ -3,16 +3,15 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Reservation = require('./reservation');
 
+// Customer table to store cusomer details.
 class Customer extends Model {}
 
 Customer.init (
     {
-        // foreign key in reservation table
+        // Primary key
         customerId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            // type: DataTypes.UUID,
-            // defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
         },
@@ -31,6 +30,7 @@ Customer.init (
         phone: {
             type: DataTypes.STRING,
         },
+        // passowrd length should be 8 chars.
         password: {
             type: DataTypes.STRING,
             allowNull: false,
