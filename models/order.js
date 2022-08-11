@@ -10,6 +10,13 @@ Order.init(
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
         },
+        customerId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'customers',
+                key: 'customerId',
+            },
+        },
         order: {
             type: DataTypes.TEXT('long'),
             allowNull: false,
@@ -20,14 +27,7 @@ Order.init(
         totalPrice: {
             type: DataTypes.FLOAT,
             allowNull: false,
-        },
-        customerId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'customers',
-                key: 'customerId',
-            },
-        }
+        },  
     },
     {
         sequelize,

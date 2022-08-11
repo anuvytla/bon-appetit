@@ -11,8 +11,6 @@ Customer.init (
         customerId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            // type: DataTypes.UUID,
-            // defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
         },
@@ -34,13 +32,30 @@ Customer.init (
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            len: [8],
+            validate: {
+                pwAtLeast8char(password) {
+                    if (password.length < 8) {
+                        throw new Error ('choose a password that is at least 8 characters');
+                    }
+                }
+            }
+            
         }
     },
     {
         sequelize,
         timestamps: true,
         modelName: 'customers',
+        hooks: {
+            beforeCreate: async (customer) => {
+                customer.email = customer.email.toLowerCase();
+                return customer;
+            },
+            beforeUpdate: (customer) => {
+                customer.email = customer.email.toLowerCase();
+                return customer;
+            },
+        }
     }
 );
 

@@ -12,11 +12,11 @@ Customer.hasMany(Order, {
 });
 
 Reservation.belongsTo(Customer, {
-    foreignKey: 'customerID',
+    foreignKey: 'customerId',
 });
 
 Customer.hasMany(Reservation, {
-    foreignKey: 'customerID',
+    foreignKey: 'customerId',
     onDelete: 'CASCADE',
 });
 
