@@ -10,10 +10,16 @@ Reservation.init (
             type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
-            primaryKey: true,
-            // defaultValue: DataTypes.UUIDV4
-           
+            primaryKey: true,                 
         },
+        customerId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'customers',
+                key: 'customerId',
+            }
+        },
+
         partySize: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -26,12 +32,7 @@ Reservation.init (
             type: DataTypes.TIME,
             allowNull: false,
         },
-        // primary key for customer table 
-        // customerID: {
-        //     type: DataTypes.UUID,
-        //     allowNull: false,
-        //     foreignKey: true,
-        // },
+        
     },
     {
         sequelize,
