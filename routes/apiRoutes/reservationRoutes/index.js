@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
         // If total reservation less than maximum create a new reservation.
         if(count < max_reservations){
             const newReservation = await Reservation.create({
-                customerID: customerId,
+                customerId: customerId,
                 reservationDate: dt,
                 reservationTime: reservationTime,
                 partySize: partySize
