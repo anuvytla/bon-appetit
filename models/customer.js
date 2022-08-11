@@ -32,7 +32,14 @@ Customer.init (
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            len: [8],
+            validate: {
+                pwAtLeast8char(password) {
+                    if (password.length < 8) {
+                        throw new Error ('choose a password that is at least 8 characters');
+                    }
+                }
+            }
+            
         }
     },
     {
