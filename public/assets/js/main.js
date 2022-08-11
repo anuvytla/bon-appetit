@@ -1,3 +1,4 @@
+// selecting the UI elements
 const signUpBtn = document.getElementById("mainSignUpBtn");
 const orderOnlineBtn = document.getElementById("orderOnlineBtn");
 const reserveTableBtn = document.getElementById("reserveTableBtn");
@@ -5,6 +6,7 @@ const logoutBtn = document.getElementById("signoutBtn");
 const mainLoginBtn = document.getElementById("mainLoginBtn");
 const profileBtn = document.getElementById("profileBtn");
 
+// Event listeners for all the buttons on screen
 signUpBtn?.addEventListener("click", async () => {
   window.location.href = "/signup";
 });

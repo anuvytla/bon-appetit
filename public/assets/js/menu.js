@@ -1,11 +1,14 @@
+// Selecting the UI elements
 const placeOrderBtn = document.getElementById("placeOrderBtn");
 
+// Event listener
 placeOrderBtn.addEventListener("click", async () => {
   const response = await fetch("/api/items");
   menuItems = await response.json();
   orderArray = [];
   totalPrice = 0;
 
+  // Reading the input by the user and basic validation to send the item and its quantity
   JSON.parse(menuItems).appetizerItems.forEach((element) => {
     let quantity = document.getElementById(element.id + "Quantity").value;
     if (quantity > 5 || quantity < 0) {
@@ -19,6 +22,7 @@ placeOrderBtn.addEventListener("click", async () => {
     }
   });
 
+  // Reading the input by the user and basic validation to send the item and its quantity
   JSON.parse(menuItems).mainItems.forEach((element) => {
     let quantity = document.getElementById(element.id + "Quantity").value;
     if (quantity > 5 || quantity < 0) {
@@ -31,6 +35,7 @@ placeOrderBtn.addEventListener("click", async () => {
     }
   });
 
+  // Reading the input by the user and basic validation to send the item and its quantity
   JSON.parse(menuItems).dessertItems.forEach((element) => {
     let quantity = document.getElementById(element.id + "Quantity").value;
     if (quantity > 5 || quantity < 0) {
@@ -43,8 +48,9 @@ placeOrderBtn.addEventListener("click", async () => {
     }
   });
 
+  // Sending the order details to the backend
   orderString = JSON.stringify(orderArray);
-  console.log(orderString);
+  
   if (totalPrice > 0) {
     try {
       const response = await fetch("/api/orders", {

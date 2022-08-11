@@ -33,8 +33,7 @@ passport.deserializeUser(function(user, cb) {
   });
 });
 
-// [TODO] username password check is missing, res object not given
-// [TODO] Save session details and set isLoggedIn to true/false
+
 router.post("/login/password", passport.authenticate('local', { failureMessage: true }), function (req, res) {
   if (!req.user) {
     console.log("Invalid credentials!");

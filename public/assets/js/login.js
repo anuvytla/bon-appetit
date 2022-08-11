@@ -1,7 +1,9 @@
+// Selecting the UI elements
 const loginBtn = document.getElementById("loginBtn");
 const loginUsernameInput = document.getElementById("loginUsernameInput");
 const loginPasswordInput = document.getElementById("loginPasswordInput");
 
+// Login button event listener
 loginBtn?.addEventListener("click", async (event) => {
   event.preventDefault();
   const username = loginUsernameInput.value;
@@ -12,12 +14,13 @@ loginBtn?.addEventListener("click", async (event) => {
     alert("Please enter a valid username");
     return;
   }
-  // checks that password is greater than 6 characters
-  if (password.trim().length < 6) {
+  // checks that password is greater than 8 characters
+  if (password.trim().length < 8) {
     alert("Please enter a valid password. Password must be 6 characters long.");
     return;
   }
 
+  // Post request sent to the backend for username and password validation
   try {
     const response = await fetch("/auth/login/password", {
       method: "POST",
@@ -35,14 +38,15 @@ loginBtn?.addEventListener("click", async (event) => {
         password,
       })
     );
-    console.log(username, password);
+    
+    // Rendering the appropriate page based on the username password validation
     if(response.status == 200) {
       loginStatus = await response.json();
       if (loginStatus) {
-        console.log("login status success");
+        
         window.location.href = "/home";
       } else {
-        console.log("login status fail");
+        
         window.location.href = "/login";
       }
     } else {

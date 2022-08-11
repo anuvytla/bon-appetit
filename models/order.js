@@ -1,6 +1,6 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-
+// Model pf the Order table in the DB
 class Order extends Model {}
 
 Order.init(

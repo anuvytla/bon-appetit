@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {Customer, Order} = require('../models');
 const menuItems = require('../utils/items')
 
+// Get all menu items and its details
 router.get('/items', async (req, res) => {
   if(!req.session.isLoggedIn){
       res.status(401).json({error: 'You must be logged in to do that'});
@@ -9,11 +10,12 @@ router.get('/items', async (req, res) => {
   res.json(menuItems);  
 });
 
+// This is called when you place an order
 router.post('/orders', async (req, res) => {
   if(!req.session.isLoggedIn){
       res.status(401).json({error: 'You must be logged in to do that'});
   }
-  console.log("HII",req.session.customerId);
+  
   try {
       const newOrder = await Order.create({
           order: req.body.order,
@@ -30,6 +32,7 @@ router.post('/orders', async (req, res) => {
 
 });
 
+// This is used while displaying the order details on the profile page
 router.get('/orders', async (req, res) => {
     if(!req.session.isLoggedIn){
         res.status(401).json({error: 'You must be logged in to do that'});
