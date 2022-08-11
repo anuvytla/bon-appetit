@@ -13,7 +13,6 @@
   - [What we learned](#what-we-learned)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
-- [Making API calls](#making-API-calls)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
 
@@ -51,7 +50,7 @@ Has a polished UI
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./public/assets/images/ScreenshotA.png)
 
 
 
@@ -59,9 +58,9 @@ Has a polished UI
 ### Links
 
 - Solution URL: [https://github.com/anuvytla/bon-appetit](https://github.com/anuvytla/bon-appetit)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://reservation-bonappetit.herokuapp.com/](https://reservation-bonappetit.herokuapp.com/)
 
-## My process
+## Our process
 
 ### Built with
 
@@ -69,14 +68,16 @@ Has a polished UI
 - CSS
 - Semantic HTML5 markup
 - Node.js
-- Express.js
+
 
 
 ### Dependencies
+- bcrypt
 - connect-session-sequelize
 - connect-sqlite3
 - cookie-parser
 - dotenv
+- Express.js
 - express-handlebars
 - express-sesssion
 - inquirer
@@ -84,18 +85,6 @@ Has a polished UI
 - passport
 - sequelize
 
-
-
-
-## Making API Calls
-
-### Get
-
-### Post
-
-### Update
-
-### Delete
 
 
 
@@ -111,7 +100,7 @@ module.exports = router;
 
 ### Continued development
 
-Beyond this project's MVP, if we had additional time, we would upscale this application to handle reservations for multiple restaurants. Additionally, we would have incorporated a seating chart. 
+Beyond this project's MVP, if we had additional time, we would have upscaled the application to handle reservations for multiple restaurants. Additionally, we would have incorporated a seating chart. 
 
 
 ## Authors
@@ -120,7 +109,7 @@ Beyond this project's MVP, if we had additional time, we would upscale this appl
 - Github - [anuvytla](https://github.com/anuvytla)
 -------------------------------------------------------------
 
-- Professional Portfolio - [Devi Nallammai](https://www.your-site.com)
+- Professional Portfolio - [Devi Nallammai](https://rmdn321.github.io/homework-2/)
 - Github - [rmdn321](https://github.com/rmdn321/)
 --------------------------------------------------------------
 
