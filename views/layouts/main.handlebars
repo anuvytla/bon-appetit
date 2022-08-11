@@ -1,3 +1,4 @@
+{{!-- Basic handlebar for uniform UI on all pages based on if the user is logged in or not --}}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,7 +29,7 @@
     <nav class="navbar main-bg d-flex justify-content-between">
       <div class="container">
 
-        <div class="">
+        <div class="logoDiv">
           {{#if isLoggedIn}}
           <a id="logo" class="navbar-brand" href="/home">          
             <i class="fa-solid fa-champagne-glasses"></i>
@@ -42,7 +43,7 @@
           {{/if}}
 
         </div>
-        <div class="d-inline-block m-2">
+        <div id="mainBtn" class="d-inline-block m-2">
           {{#if isLoggedIn}}
             <button id="profileBtn" class="btn mx-2">Profile</button>
             <button id="orderOnlineBtn" class="btn mx-2">Order Online</button>

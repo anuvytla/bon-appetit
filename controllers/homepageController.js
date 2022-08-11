@@ -3,7 +3,7 @@ var authRouter = require("../routes/auth");
 const apiRoutes = require("../routes");
 const apiController = require("./apiController");
 const menuItems = require("../utils/items");
-const { Customer, Reservation } = require("../models");
+const { Customer, Reservation, Order } = require("../models");
 
 // renders signup/landing page
 router.get("/", async (req, res) => {
@@ -11,36 +11,61 @@ router.get("/", async (req, res) => {
     let userID = req.user.customerId;
     let user = await Customer.findByPk(userID, {
       // include its associated Products.
-      include: [{ model: Reservation }],
+      include: [ Reservation, Order ],
     });
+    // code for displaying the order history from the DB in the correct format on screen
+    orderHistory = [];
+    
+    user.orders.forEach(order => {
+
+      items = JSON.parse(order.order) ;
+
+      orderDict = {"itemsJson": items, "totalPrice": order.totalPrice,
+      "orderDate": order.createdAt.split(" ")[0],
+      "orderTime": order.createdAt.split(" ")[1]
+    }
+      orderHistory.push(orderDict)
+    }); 
+
     res.render("dashboard", {
       isLoggedIn: req.session.isLoggedIn,
-      user: user.get({plain: true})
+      user: user.get({plain: true}),
+      orderHistory: orderHistory,
     });
   } else {
     res.redirect("/login");
   }
 });
 
+// Render Login page
 router.get("/login", (req, res) => {
   res.render("login", {
     isLoggedIn: req.session.isLoggedIn,
   });
 });
 
+// Render the home page when the user is logged in
 router.get("/home", (req, res) => {
-  // res.render("home")
-  res.render("home", {
-    isLoggedIn: req.session.isLoggedIn,
-  });
+  
+  if (req.session.isLoggedIn) {
+    res.render("home", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  } else {
+    res.render("login", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  }
 });
 
+// Render the sign up page
 router.get("/signup", (req, res) => {
   res.render("signup", {
     isLoggedIn: req.session.isLoggedIn,
   });
 });
 
+// Render the reservation page if the user is logged in
 router.get("/reservation", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("reservation", {
@@ -53,8 +78,21 @@ router.get("/reservation", (req, res) => {
   }
 });
 
+// Render the profile page if the user is logged in
+router.get("/profile", (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.render("dashboard", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  } else {
+    res.render("login", {
+      isLoggedIn: req.session.isLoggedIn,
+    });
+  }
+});
+
+// Render the menu page if the user is logged in
 router.get("/menu", (req, res) => {
-  // [TODO] href => 2 places (main.js called from user, menu.js called from place_order)
   if (req.session.isLoggedIn) {
     res.render("menu", {
       appetizerItems: JSON.parse(menuItems).appetizerItems,
