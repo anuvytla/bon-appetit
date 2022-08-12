@@ -32,12 +32,7 @@ loginBtn?.addEventListener("click", async (event) => {
         password,
       }),
     });
-    console.log(
-      JSON.stringify({
-        username,
-        password,
-      })
-    );
+   
     
     // Rendering the appropriate page based on the username password validation
     if(response.status == 200) {

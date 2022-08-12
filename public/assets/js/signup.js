@@ -20,7 +20,7 @@ signupBtn.addEventListener("click", async (event) => {
   }
   // checks that password is greater than 8 characters
   if (password.trim().length < 8) {
-    alert("Please enter a valid password. Password must be 6 characters long.");
+    alert("Please enter a valid password. Password must be 8 characters long.");
     return;
   }
 

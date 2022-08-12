@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
       items = JSON.parse(order.order) ;
 
       orderDict = {"itemsJson": items, "totalPrice": order.totalPrice,
-      "orderDate": order.createdAt.split(" ")[0],
-      "orderTime": order.createdAt.split(" ")[1]
+      "orderDate": order.createdAt.toString().split(" ")[0],
+      "orderTime": order.createdAt.toString().split(" ")[1]
     }
       orderHistory.push(orderDict)
     }); 
