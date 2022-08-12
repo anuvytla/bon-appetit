@@ -7,6 +7,6 @@ module.exports = {
     format_date: (date) => {
         console.log("DATE IS.........", date);
         return date;
-        // return date.slice(0,10);
+//         return date.slice(0,10);
     },
   };
