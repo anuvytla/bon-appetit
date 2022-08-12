@@ -7,13 +7,14 @@ var cookieParser = require('cookie-parser');
 const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers/homepageController');
+const helpers = require('./utils/helpers');
 
 // Create an express server.
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // setup handlebars template engine.
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
