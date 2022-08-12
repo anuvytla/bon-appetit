@@ -6,6 +6,6 @@ module.exports = {
     },
     format_date: (date) => {
         console.log("DATE IS.........", date);
-        return datetime.format(datetime.parse(date, "YYYY-MM-DD HH:mm:ss"), "dddd MMM DD, YYYY");
+        return date.slice(0,10);
     },
   };
