@@ -2,13 +2,26 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
 const {
-    Customer
+    Reservation,
+    Order,
+    Customer,
 } = require('../../../models');
 
 // GET '/api/customers' route to return all customers in json format.
 router.get('/', async (req, res) => {
     try{
-        const customers = await Customer.findAll();
+        const customers = await Customer.findAll({
+            include: [
+                {
+                    model: Reservation
+                },
+                {
+                    model: Order
+                },
+
+
+            ]
+        });
         res.json(customers);
     } catch (error) {
         res.status(500).json({ error });

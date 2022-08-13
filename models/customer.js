@@ -21,7 +21,7 @@ Customer.init (
         },
         email: {
             type: DataTypes.STRING,
-            unique: true,
+            unique: true, 
             validate: {
                 isEmail: true,
             },
