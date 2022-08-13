@@ -58,7 +58,7 @@ Has a polished UI
 ### Links
 
 - Solution URL: [https://github.com/anuvytla/bon-appetit](https://github.com/anuvytla/bon-appetit)
-- Live Site URL: [https://reservation-bonappetit.herokuapp.com/](https://reservation-bonappetit.herokuapp.com/)
+- Live Site URL: [https://reservation-bonappetit.herokuapp.com/signup](https://reservation-bonappetit.herokuapp.com/signup)
 
 ## Our process
 
