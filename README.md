@@ -8,11 +8,9 @@
   - [Acceptance Criteria](#acceptance-criteria)
   - [Screenshot](#screenshot)
   - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What we learned](#what-we-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
+- [Our process](#my-process)
+  - [Built with](#built-with)  
+  - [Continued development](#continued-development)  
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
 
@@ -22,20 +20,19 @@
 
 ### The challenge
 
-The minimum viable product (MVP) of this team project is to create a full stack RESTFUL application. Our app, Bon Appetit, is a restaurant reservation system that utilizes Node.js and Express.js for the backend. The database is deployed through Heroku and uses Sequelize as the ORM. The UI allows customers to sign up, login, and make reservations to the system. Additional functionalities include the ability to fetch the API for existing reservations and to modify and cancel reservations. As such, the app meets the CRUD (Create, Read, Update, Delete) requirements.  
+Create a Full stack RESTFUL application that utilizes Node.js and Express.js for the backend. It uses mySQL for database and Sequelize as the ORM. It is deployed through Heroku. The Application uses Passport.js for user authentication. This is a Restaurant application where the supported functionalities are Sign up, Login, Reserve a table, Order online and view Profile.
 
 ### User Story
 
-AS A restaurant customer
-I WANT a reservation system
-SO THAT I can make, update, or delete reservations
-
-AS A restaurant manager
-I WANT a reservation system
-SO THAT I can view customers' reservations to manage my restaurant capacity
+```
+AS a Restaurant Customer
+I WANT an online Reservation/Order system, 
+SO THAT I can make a reservation or order online and view the activity on my profile
+```
 
 ### Acceptance Criteria
 
+```
 Use Node.js and Express.js to create a RESTful API
 use Handlebars.js as the template engine
 Use MySQL and the Sequelize ORM for the database
@@ -45,8 +42,7 @@ Includes authentication (express-session and cookies)
 Protects API keys and sensitive information with environment variables
 Deploy using Heroku (with data)
 Has a polished UI
-
-
+```
 
 ### Screenshot
 
@@ -69,8 +65,6 @@ Has a polished UI
 - Semantic HTML5 markup
 - Node.js
 
-
-
 ### Dependencies
 - bcrypt
 - connect-session-sequelize
@@ -87,7 +81,6 @@ Has a polished UI
 
 
 
-
 ```javaScript
 const router = require('express').Router();
 const apiRoutes = require('./apiRoutes');
@@ -100,7 +93,18 @@ module.exports = router;
 
 ### Continued development
 
-Beyond this project's MVP, if we had additional time, we would have upscaled the application to handle reservations for multiple restaurants. Additionally, we would have incorporated a seating chart. 
+- Upscale application to handle reservations and online orders for multiple restaurants
+
+- Incorporate a Seating Chart
+
+- Provide statistical reporting
+
+- Add payment gateway
+
+- Option to modify or cancel reservation/order
+
+- Expand to add more restaurants
+ 
 
 
 ## Authors
